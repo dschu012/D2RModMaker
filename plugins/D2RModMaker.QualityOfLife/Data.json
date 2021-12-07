@@ -1,0 +1,264 @@
+﻿{
+  //Everything needed to change for big inventory
+  "ExpandedInventory": {
+    "Classic": {
+      //Apply to each class
+      "inventory.txt": {
+        "gridY": "8",
+        "gridTop": "211",
+        "gridBottom": "441",
+        "rArmTop": "27",
+        "rArmBottom": "139",
+        "lArmTop": "27",
+        "lArmBottom": "139",
+        "feetTop": "155",
+        "feetBottom": "207",
+        "glovesTop": "153",
+        "glovesBottom": "205"
+      },
+      "Layouts": {
+        "PlayerInventoryOriginalLayoutHD": {
+          "Deletes": [ "$.children[?(@.name == 'title')]" ],
+          "Merges": [
+            {
+              "Path": "$.children[?(@.name == 'background')]",
+              "Value": {
+                "fields": {
+                  "filename": "PANEL\\Inventory\\Background_Expanded",
+                  "rect": {
+                    "x": 0,
+                    "y": -210
+                  }
+                }
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'gold_amount')].fields.rect",
+              "Value": {
+                "x": 544,
+                "y": 1401
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'gold_button')].fields.rect",
+              "Value": {
+                "x": 480,
+                "y": 1403
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'close')].fields.rect",
+              "Value": {
+                "x": 1080,
+                "y": -209
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'grid')].fields.rect",
+              "Value": {
+                "x": 93,
+                "y": 607
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'grid')].fields.cellCount",
+              "Value": {
+                "x": 10,
+                "y": 8
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_head')].fields.rect",
+              "Value": {
+                "x": 482,
+                "y": -105
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_neck')].fields.rect",
+              "Value": {
+                "x": 718,
+                "y": 63
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_torso')].fields.rect",
+              "Value": {
+                "x": 482,
+                "y": 138
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_right_arm')].fields.rect",
+              "Value": {
+                "x": 109,
+                "y": -58
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_left_arm')].fields.rect",
+              "Value": {
+                "x": 861,
+                "y": -58
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_right_hand')].fields.rect",
+              "Value": {
+                "x": 344,
+                "y": 480
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_left_hand')].fields.rect",
+              "Value": {
+                "x": 718,
+                "y": 479
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_belt')].fields.rect",
+              "Value": {
+                "x": 483,
+                "y": 479
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_feet')].fields.rect",
+              "Value": {
+                "x": 860,
+                "y": 378
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'slot_gloves')].fields.rect",
+              "Value": {
+                "x": 107,
+                "y": 378
+              }
+            }
+          ]
+        }
+      }
+    },
+    "Expansion": {
+      //Apply to each class
+      "inventory.txt": {
+        "gridY": "8",
+        "gridTop": "271",
+        "gridBottom": "501",
+        "rArmTop": "89",
+        "rArmBottom": "201",
+        "lArmTop": "89",
+        "lArmBottom": "201",
+        "feetTop": "217",
+        "feetBottom": "269",
+        "glovesTop": "215",
+        "glovesBottom": "268"
+      },
+      "Layouts": {
+        "PlayerInventoryExpansionLayoutHD": {
+          "Merges": [
+            {
+              "Path": "$.children[?(@.name == 'click_catcher')]",
+              "Value": {
+                "fields": {
+                  "rect": {
+                    "width": 1320,
+                    "height": 2432
+                  }
+                }
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'background')]",
+              "Value": {
+                "fields": {
+                  "filename": "PANEL\\Inventory\\Background_Expanded2"
+                }
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'background_right_arm_selected')].fields.rect",
+              "Value": {
+                "x": 99,
+                "y": -116
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'background_left_arm_selected')].fields.rect",
+              "Value": {
+                "x": 850,
+                "y": -116
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'background_right_arm')].fields.rect",
+              "Value": {
+                "x": 99,
+                "y": -116
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'background_left_arm')].fields.rect",
+              "Value": {
+                "x": 850,
+                "y": -116
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'text_i_left')].fields.rect",
+              "Value": {
+                "x": 112,
+                "y": -117,
+                "width": 84
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'text_ii_left')].fields.rect",
+              "Value": {
+                "x": 218,
+                "y": -117,
+                "width": 84
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'text_i_right')].fields.rect",
+              "Value": {
+                "x": 862,
+                "y": -117,
+                "width": 84
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'text_ii_right')].fields.rect",
+              "Value": {
+                "x": 970,
+                "y": -117,
+                "width": 84
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'weaponswap_right_arm')].fields.rect",
+              "Value": {
+                "x": 99,
+                "y": -124,
+                "width": 215,
+                "height": 48
+              }
+            },
+            {
+              "Path": "$.children[?(@.name == 'weaponswap_left_arm')].fields.rect",
+              "Value": {
+                "x": 850,
+                "y": -124,
+                "width": 215,
+                "height": 48
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

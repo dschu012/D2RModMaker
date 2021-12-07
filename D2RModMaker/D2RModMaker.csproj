@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\D2RModMaker.Api\D2RModMaker.Api.csproj" />
+    <ProjectReference Include="..\plugins\D2RModMaker.Difficulty\D2RModMaker.Difficulty.csproj" />
+    <ProjectReference Include="..\plugins\D2RModMaker.QualityOfLife\D2RModMaker.QualityOfLife.csproj" />
+    <ProjectReference Include="..\plugins\D2RModMaker.Speed\D2RModMaker.Speed.csproj" />
+    <ProjectReference Include="..\TACTLib\TACTLib\TACTLib.csproj" />
+  </ItemGroup>
+
+</Project>
