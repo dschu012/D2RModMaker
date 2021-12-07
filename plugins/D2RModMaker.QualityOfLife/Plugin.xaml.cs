@@ -70,6 +70,8 @@ namespace D2RModMaker.QualityOfLife
             Settings.SkipIntroVideos = true;
             Settings.StartWithCube = true;
             Settings.ShowILvls = true;
+            Settings.ExpandedStackSizes = true;
+            Settings.UseSkillsInTown = true;
 
             InitializeComponent();
         }

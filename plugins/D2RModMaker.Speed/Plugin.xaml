@@ -11,6 +11,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="40"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -18,10 +19,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0">Player Speed Scaling:</Label>
-        <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.PlayerSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.PlayerSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Label Grid.Row="0" Grid.Column="2" Content="{Binding Path=Settings.PlayerSpeed, ElementName=SpeedPlugin}"></Label>
         <Label Grid.Row="1" Grid.Column="0">Monster Speed Scaling:</Label>
-        <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MonsterSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MonsterSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Label Grid.Row="1" Grid.Column="2" Content="{Binding Path=Settings.MonsterSpeed, ElementName=SpeedPlugin}"></Label>
         <Label Grid.Row="2" Grid.Column="0">Missile Speed Scaling:</Label>
-        <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MissileSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Slider Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MissileSpeed, ElementName=SpeedPlugin, Mode=TwoWay}" />
+        <Label Grid.Row="2" Grid.Column="2" Content="{Binding Path=Settings.MissileSpeed, ElementName=SpeedPlugin}"></Label>
     </Grid>
 </UserControl>
