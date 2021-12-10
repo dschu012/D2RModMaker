@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\D2RModMaker.Api\D2RModMaker.Api.csproj" />
+    <ProjectReference Include="..\plugins\D2RModMaker.Corruption\D2RModMaker.Corruption.csproj" />
     <ProjectReference Include="..\plugins\D2RModMaker.Difficulty\D2RModMaker.Difficulty.csproj" />
     <ProjectReference Include="..\plugins\D2RModMaker.QualityOfLife\D2RModMaker.QualityOfLife.csproj" />
     <ProjectReference Include="..\plugins\D2RModMaker.Speed\D2RModMaker.Speed.csproj" />

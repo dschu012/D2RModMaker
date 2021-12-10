@@ -18,6 +18,7 @@ namespace D2RModMaker.QualityOfLife
     public partial class Plugin : UserControl, IPlugin
     {
         public string PluginName { get; set; } = "Quality of Life";
+        public bool Enabled { get; set; } = true;
         public dynamic Settings { get; set; } = new ExpandoObject();
         public UserControl UI { get { return this; } }
 
@@ -57,6 +58,17 @@ namespace D2RModMaker.QualityOfLife
                     files.Add(@"data:data/hd/global/video/d2intro.webm");
                     files.Add(@"data:data/hd/global/video/LogoAnim.webm");
                 }
+                if(Settings.UseSkillsInTown)
+                {
+                    files.Add(@"data:data/global/excel/skills.txt");
+                    files.Add(@"data:data/global/excel/Missiles.txt");
+                }
+                if(Settings.ShowILvls)
+                {
+                    files.Add(@"data:data/global/excel/armor.txt");
+                    files.Add(@"data:data/global/excel/weapons.txt");
+                    files.Add(@"data:data/global/excel/misc.txt");
+                }
                 return files.ToArray();
             }
         }
@@ -70,8 +82,13 @@ namespace D2RModMaker.QualityOfLife
             Settings.SkipIntroVideos = true;
             Settings.StartWithCube = true;
             Settings.ShowILvls = true;
-            Settings.ExpandedStackSizes = true;
             Settings.UseSkillsInTown = true;
+
+            Settings.TPBookSize = 20.0;
+            Settings.IDBookSize = 20.0;
+            Settings.KeySize = 12.0;
+            Settings.QuiverSize = 350.0;
+
 
             InitializeComponent();
         }
@@ -94,15 +111,118 @@ namespace D2RModMaker.QualityOfLife
                     }
                 }
             }
+            if(Settings.StartWithCube)
+            {
+                StartWithCube(Context);
+            }
             if(Settings.SkipIntroVideos)
             {
-                File.Create(Context.ModFiles[@"data:data/hd/global/video/BlizzardLogos.webm"]).Close();
-                File.Create(Context.ModFiles[@"data:data/hd/global/video/d2intro.webm"]).Close();
-                File.Create(Context.ModFiles[@"data:data/hd/global/video/LogoAnim.webm"]).Close();
+                SkipIntroVideos(Context);
             }
+            if(Settings.UseSkillsInTown)
+            {
+                UseSkillsInTown(Context);
+            }
+            if(Settings.ShowILvls)
+            {
+                ShowILvls(Context);
+            }
+            IncreaseStackSizes(Context);
         }
 
+        private void StartWithCube(ExecuteContext Context)
+        {
+            var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/charstats.txt"]);
+            foreach(var row in txt.Rows)
+            {
+                for(int i = 1; i <= 6; i++)
+                {
+                    var col = txt.Columns["item" + i];
+                    //already have box as starting item
+                    if(row[col].Value == "box")
+                    {
+                        break;
+                    }
+                    if((row[col].Value == "" || row[col].Value == "0")
+                        && (row[col+2].Value == "" || row[col+2].Value == "0"))
+                    {
+                        row[col].Value = "box";
+                        row[col + 2].Value = "1";
+                        break;
+                    }
+                }
+            }
+            txt.Write();
+        }
 
+        private void IncreaseStackSizes(ExecuteContext Context)
+        {
+            var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/misc.txt"]);
+            txt.GetByColumnAndValue("code", "tbk")["maxstack"].Value = GetStackSize(Settings.TPBookSize).ToString("0");
+            txt.GetByColumnAndValue("code", "ibk")["maxstack"].Value = GetStackSize(Settings.IDBookSize).ToString("0");
+            txt.GetByColumnAndValue("code", "key")["maxstack"].Value = GetStackSize(Settings.KeySize).ToString("0");
+            txt.GetByColumnAndValue("code", "aqv")["maxstack"].Value = GetStackSize(Settings.QuiverSize).ToString("0");
+            txt.GetByColumnAndValue("code", "cqv")["maxstack"].Value = GetStackSize(Settings.QuiverSize).ToString("0");
+            txt.Write();
+        }
+
+        private double GetStackSize(double number)
+        {
+            if(number < 0.0)
+            {
+                return 0.0;
+            }
+            if(number > 511.0)
+            {
+                return 511.0;
+            }
+            return number;
+        }
+
+        private void ShowILvls(ExecuteContext Context)
+        {
+            var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/armor.txt"]);
+            foreach (var row in txt.Rows)
+            {
+                row["ShowLevel"].Value = "1";
+            }
+            txt.Write();
+            txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/weapons.txt"]);
+            foreach (var row in txt.Rows)
+            {
+                row["ShowLevel"].Value = "1";
+            }
+            txt.Write();
+            txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/misc.txt"]);
+            foreach (var row in txt.Rows)
+            {
+                row["ShowLevel"].Value = "1";
+            }
+            txt.Write();
+        }
+
+        private void UseSkillsInTown(ExecuteContext Context)
+        {
+            var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/skills.txt"]);
+            foreach(var row in txt.Rows)
+            {
+                row["InTown"].Value = "1";
+            }
+            txt.Write();
+            txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/Missiles.txt"]);
+            foreach (var row in txt.Rows)
+            {
+                row["Town"].Value = "1";
+            }
+            txt.Write();
+        }
+
+        private void SkipIntroVideos(ExecuteContext Context)
+        {
+            File.Create(Context.ModFiles[@"data:data/hd/global/video/BlizzardLogos.webm"]).Close();
+            File.Create(Context.ModFiles[@"data:data/hd/global/video/d2intro.webm"]).Close();
+            File.Create(Context.ModFiles[@"data:data/hd/global/video/LogoAnim.webm"]).Close();
+        }
         private void ExpandInventory(JObject constants, ExecuteContext Context)
         {
             //Update inventory.txt
@@ -131,7 +251,7 @@ namespace D2RModMaker.QualityOfLife
             foreach (var layout in layouts)
             {
                 var file = Context.ModFiles[@$"data:data/global/ui/Layouts/{ layout.Key }.json"];
-                var root = StreamUtils.ReadJSONFile(file);
+                var root = (JObject)StreamUtils.ReadJSONFile(file);
                 ProcessJSONChanges((JObject)layout.Value, root);
                 StreamUtils.WriteJSONFile(file, root);
             }
@@ -140,7 +260,7 @@ namespace D2RModMaker.QualityOfLife
             foreach (var layout in layouts)
             {
                 var file = Context.ModFiles[@$"data:data/global/ui/Layouts/{ layout.Key }.json"];
-                var root = StreamUtils.ReadJSONFile(file);
+                var root = (JObject)StreamUtils.ReadJSONFile(file);
                 ProcessJSONChanges((JObject)layout.Value, root);
                 StreamUtils.WriteJSONFile(file, root);
             }

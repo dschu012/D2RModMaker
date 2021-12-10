@@ -15,10 +15,6 @@ namespace D2RModMaker.Api
 
         public static void WriteStreamToFile(Stream s, string path)
         {
-            if(s == null)
-            {
-                return;
-            }
             string dir = Path.GetDirectoryName(path);
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
@@ -28,15 +24,15 @@ namespace D2RModMaker.Api
             }
         }
 
-        public static JObject ReadJSONFile(string path)
+        public static JToken ReadJSONFile(string path)
         {
             using (StreamReader sr = File.OpenText(path))
             {
-                return JObject.Parse(sr.ReadToEnd());
+                return JToken.Parse(sr.ReadToEnd());
             }
         }
 
-        public static void WriteJSONFile(string path, JObject json)
+        public static void WriteJSONFile(string path, JToken json)
         {
             string dir = Path.GetDirectoryName(path);
             if (!Directory.Exists(dir))

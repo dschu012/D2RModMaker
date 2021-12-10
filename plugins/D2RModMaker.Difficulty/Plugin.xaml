@@ -19,7 +19,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0">Monster Quantity:</Label>
-        <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="100" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MonsterQuanityScale, ElementName=DifficultyPlugin, Mode=TwoWay}" />
+        <Slider Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="200" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.MonsterQuanityScale, ElementName=DifficultyPlugin, Mode=TwoWay}" />
         <Label Grid.Row="0" Grid.Column="2" Content="{Binding Path=Settings.MonsterQuanityScale, ElementName=DifficultyPlugin}"></Label>
         <Label Grid.Row="1" Grid.Column="0">Monster HP Scaling:</Label>
         <Slider Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TickPlacement="BottomRight" TickFrequency="0.25" Minimum="0.25" Maximum="10" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Value="{Binding Path=Settings.HPScale, ElementName=DifficultyPlugin, Mode=TwoWay}" />

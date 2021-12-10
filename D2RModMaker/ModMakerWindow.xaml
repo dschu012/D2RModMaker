@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:D2RModMaker"
         mc:Ignorable="d"
-        Title="ModMakerWindow" Height="450" Width="800">
+        Title="Edit Mod" Height="600" Width="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="10">
             <Grid.Resources>
@@ -26,9 +26,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Name="PluginPanel" Orientation="Vertical"></StackPanel>
-            <Border Grid.Row="1" Padding="10">
+            <WrapPanel>
+                <Label>Mod Name:</Label>
+                <TextBox MinWidth="150" Margin="0,3,10,5"></TextBox>
+                <Label>Additional Launch Args:</Label>
+                <TextBox MinWidth="250" Margin="0,3,10,5"></TextBox>
+            </WrapPanel>
+            <StackPanel Grid.Row="1" Name="PluginPanel" Orientation="Vertical"></StackPanel>
+            <Border Grid.Row="2" Padding="10">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Click="Button_Click">Build</Button>
                     <Button Click="Button2_Click">Launch</Button>

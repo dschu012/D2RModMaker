@@ -4,8 +4,10 @@ using System.Windows.Controls;
 
 namespace D2RModMaker.Api
 {
+
     public interface IPlugin
     {
+        bool Enabled { get; set; }
         string PluginName { get; set; }
         dynamic Settings { get; set; }
         UserControl UI { get; }

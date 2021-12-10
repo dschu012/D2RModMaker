@@ -7,10 +7,28 @@
 
   <ItemGroup>
     <None Remove="Data.json" />
+    <None Remove="data\hd\global\ui\panel\hireling\hirelingpanel.lowend.sprite" />
+    <None Remove="data\hd\global\ui\panel\hireling\hirelingpanel.sprite" />
+    <None Remove="data\hd\global\ui\panel\horadric_cube\horadriccube_bg2.lowend.sprite" />
+    <None Remove="data\hd\global\ui\panel\horadric_cube\horadriccube_bg2.sprite" />
+    <None Remove="data\hd\global\ui\panel\inventory\background_expanded2.lowend.sprite" />
+    <None Remove="data\hd\global\ui\panel\inventory\background_expanded2.sprite" />
+    <None Remove="data\hd\global\ui\panel\stash\stashpanel_bg2.lowend.sprite" />
+    <None Remove="data\hd\global\ui\panel\stash\stashpanel_bg2.sprite" />
+    <None Remove="data\hd\global\ui\panel\stash\stash_tabs2.sprite" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Data.json" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\hireling\hirelingpanel.lowend.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\hireling\hirelingpanel.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\horadric_cube\horadriccube_bg2.lowend.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\horadric_cube\horadriccube_bg2.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\inventory\background_expanded2.lowend.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\inventory\background_expanded2.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\stash\stashpanel_bg2.lowend.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\stash\stashpanel_bg2.sprite" />
+    <EmbeddedResource Include="data\hd\global\ui\panel\stash\stash_tabs2.sprite" />
   </ItemGroup>
 
   <ItemGroup>

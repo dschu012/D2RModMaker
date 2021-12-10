@@ -1,0 +1,283 @@
+﻿[
+  {
+    "type": "tors",
+    "label": "Chest Armor",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "shld",
+    "label": "Shield",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "helm",
+    "label": "Helm",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "belt",
+    "label": "Belt",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "boot",
+    "label": "Boots",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "glov",
+    "label": "Gloves",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "ring",
+    "label": "Ring",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "amul",
+    "label": "Amulet",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 armor
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "ac%", "min1": "8", "max1": "15" },
+          { "stat1": "res-all", "min1": "10", "max1": "20" },
+          { "stat1": "all-stats", "min1": "10", "max1": "20" },
+          { "stat1": "hp%", "min1": "5", "max1": "10" }
+        ]
+      },
+      //tier 2 armor
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "weap",
+    "label": "Weapon",
+    "brick": 35,
+    "qualities": ["uni","set","crf","rar","mag","nor","low"],
+    "tiers": [
+      //tier 1 weap
+      {
+        "weight": 1,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "2" },
+          { "stat1": "dmg%", "min1": "75", "max1": "150" },
+          { "stat1": "crush", "min1": "10", "max1": "20" },
+          { "stat1": "cast1", "min1": "15", "max1": "35" },
+          { "stat1": "res-all", "min1": "15", "max1": "30" }
+        ]
+      },
+      //tier 2 weap
+      {
+        "weight": 5,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      },
+      //tier 3
+      {
+        "weight": 7,
+        "mods": [
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" },
+          { "stat1": "allskills", "min1": "1", "max1": "1" }
+        ]
+      }
+    ]
+  }
+]

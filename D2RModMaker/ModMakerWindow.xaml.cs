@@ -41,10 +41,26 @@ namespace D2RModMaker
 
             foreach (var plugin in Plugins)
             {
+                //this doesnt seem like a good idea
                 var box = new GroupBox();
                 box.Padding = new Thickness(5, 5, 5, 5);
-                box.Header = plugin.Value.PluginName;
+                var header = new StackPanel { Orientation = Orientation.Horizontal };
+                var checkbox = new CheckBox { VerticalAlignment = VerticalAlignment.Center, IsChecked = plugin.Value.Enabled };
+                checkbox.Checked += (s, e) =>
+                {
+                    plugin.Value.Enabled = true;
+                    ((UserControl)box.Content).Visibility = Visibility.Visible;
+                };
+                checkbox.Unchecked += (s, e) =>
+                {
+                    plugin.Value.Enabled = false;
+                    ((UserControl)box.Content).Visibility = Visibility.Hidden;
+                };
+                header.Children.Add(checkbox);
+                header.Children.Add(new TextBlock { Text = plugin.Value.PluginName, Margin = new Thickness(5, 0, 0, 0) });
+                box.Header = header;
                 box.Content = plugin.Value.UI;
+                ((UserControl)box.Content).Visibility = plugin.Value.Enabled ? Visibility.Visible : Visibility.Hidden;
                 PluginPanel.Children.Add(box);
             }
             _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
@@ -72,12 +88,13 @@ namespace D2RModMaker
             modInfo.SavePath = modInfo.Name;
             modInfo.Path = System.IO.Path.Combine(_installPath, "mods", modInfo.Name, modInfo.Name + ".mpq");
 
-            /*
-            if(Directory.Exists(path))
+            
+            if(Directory.Exists(modInfo.Path))
             {
-                return;
+                Directory.Delete(modInfo.Path, true);
+                //return;
             }
-            */
+            
             Directory.CreateDirectory(modInfo.Path);
 
 
@@ -138,6 +155,16 @@ namespace D2RModMaker
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             Process.Start(Path.Combine(_installPath, "D2R.exe"), "-mod d2rmm -txt");
+        }
+
+        private void Plugin_Disabled(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Plugin_Enabled(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

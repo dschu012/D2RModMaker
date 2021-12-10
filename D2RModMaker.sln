@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2RModMaker.Difficulty", "p
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2RModMaker.QualityOfLife", "plugins\D2RModMaker.QualityOfLife\D2RModMaker.QualityOfLife.csproj", "{077A853A-626D-4782-BBBB-6899E1C8C8A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2RModMaker.Speed", "plugins\D2RModMaker.Speed\D2RModMaker.Speed.csproj", "{BA339F1E-BB49-427D-80A5-72F5C35DF214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2RModMaker.Speed", "plugins\D2RModMaker.Speed\D2RModMaker.Speed.csproj", "{BA339F1E-BB49-427D-80A5-72F5C35DF214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D2RModMaker.Corruption", "plugins\D2RModMaker.Corruption\D2RModMaker.Corruption.csproj", "{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,6 +157,26 @@ Global
 		{BA339F1E-BB49-427D-80A5-72F5C35DF214}.Release|x64.Build.0 = Release|Any CPU
 		{BA339F1E-BB49-427D-80A5-72F5C35DF214}.Release|x86.ActiveCfg = Release|Any CPU
 		{BA339F1E-BB49-427D-80A5-72F5C35DF214}.Release|x86.Build.0 = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|x64.Build.0 = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Debug|x86.Build.0 = Debug|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|ARM.Build.0 = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|ARM64.Build.0 = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|x64.ActiveCfg = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|x64.Build.0 = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|x86.ActiveCfg = Release|Any CPU
+		{CCA51025-4E03-4A73-B04C-80CF6AF79AE3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Name="QualityOfLifePlugin">
-    
     <WrapPanel Orientation="Horizontal">
         <GroupBox Header="Inventory Mods">
             <StackPanel>
@@ -19,12 +18,33 @@
         </GroupBox>
         <GroupBox Header="Misc">
             <StackPanel>
-                <CheckBox IsChecked="{Binding Path=Settings.ExpandedStackSizes, ElementName=QualityOfLifePlugin, Mode=TwoWay}">Increase Stack Sizes (511 arrows, 100 TPs, etc..)</CheckBox>
                 <CheckBox IsChecked="{Binding Path=Settings.StartWithCube, ElementName=QualityOfLifePlugin, Mode=TwoWay}">Start w/ Cube</CheckBox>
                 <CheckBox IsChecked="{Binding Path=Settings.ShowILvls, ElementName=QualityOfLifePlugin, Mode=TwoWay}">Show Item Levels</CheckBox>
                 <CheckBox IsChecked="{Binding Path=Settings.UseSkillsInTown, ElementName=QualityOfLifePlugin, Mode=TwoWay}">Use Skills In Town</CheckBox>
                 <CheckBox IsChecked="{Binding Path=Settings.SkipIntroVideos, ElementName=QualityOfLifePlugin, Mode=TwoWay}">Skip Intro Videos</CheckBox>
             </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Stack Sizes">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">TP Book:</Label>
+                <Slider Grid.Row="0" Grid.Column="1" Style="{StaticResource Spinner}" TickFrequency="1" Maximum="511" Value="{Binding Path=Settings.TPBookSize, ElementName=QualityOfLifePlugin, Mode=TwoWay}" />
+                <Label Grid.Row="1" Grid.Column="0">ID Book:</Label>
+                <Slider Grid.Row="1" Grid.Column="1" Style="{StaticResource Spinner}" TickFrequency="1" Maximum="511" Value="{Binding Path=Settings.IDBookSize, ElementName=QualityOfLifePlugin, Mode=TwoWay}" />
+                <Label Grid.Row="2" Grid.Column="0">Key:</Label>
+                <Slider Grid.Row="2" Grid.Column="1" Style="{StaticResource Spinner}" TickFrequency="1" Maximum="511" Value="{Binding Path=Settings.KeySize, ElementName=QualityOfLifePlugin, Mode=TwoWay}" />
+                <Label Grid.Row="3" Grid.Column="0">Quivers:</Label>
+                <Slider Grid.Row="3" Grid.Column="1" Style="{StaticResource Spinner}" TickFrequency="1" Maximum="511" Value="{Binding Path=Settings.QuiverSize, ElementName=QualityOfLifePlugin, Mode=TwoWay}" />
+            </Grid>
         </GroupBox>
     </WrapPanel>
 </UserControl>

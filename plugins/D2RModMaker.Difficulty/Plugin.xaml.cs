@@ -14,6 +14,7 @@ namespace D2RModMaker.Difficulty
     {
 
         public string PluginName { get; set; } = "Difficulty";
+        public bool Enabled { get; set; } = true;
         public dynamic Settings { get; set; } = new ExpandoObject();
 
         public string[] RequiredFiles { get; } = new string[]

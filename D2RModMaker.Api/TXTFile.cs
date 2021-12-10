@@ -13,7 +13,7 @@ namespace D2RModMaker.Api
         public Dictionary<string, int> Columns { get; set; }
         public List<TXTRow> Rows { get; set; }
 
-        public static TXTFile Read(string path)
+        public static TXTFile Read(string path, ISet<string> additionalColumns = null)
         {
             var txt = new TXTFile();
             txt.Path = path;
@@ -29,9 +29,22 @@ namespace D2RModMaker.Api
                     if (txt.Columns.ContainsKey(col)) continue;
                     txt.Columns.Add(col, idx++);
                 }
+                if(additionalColumns != null)
+                {
+                    foreach(var col in additionalColumns)
+                    {
+                        if (txt.Columns.ContainsKey(col)) continue;
+                        txt.Columns.Add(col, idx++);
+                    }
+                }
                 while (reader.Peek() >= 0)
                 {
-                    txt.Rows.Add(new TXTRow(txt.Columns, reader.ReadLine().Split('\t')));
+                    var data = reader.ReadLine().Split('\t', txt.Columns.Count);
+                    if(data.Length < txt.Columns.Count)
+                    {
+                        Array.Resize(ref data, txt.Columns.Count);
+                    }
+                    txt.Rows.Add(new TXTRow(txt.Columns, data));
                 }
             }
             return txt;
@@ -58,6 +71,7 @@ namespace D2RModMaker.Api
             }
             return null;
         }
+
     }
 
     public class TXTRow
@@ -123,6 +137,10 @@ namespace D2RModMaker.Api
         }
         public TXTCell(string value)
         {
+            if(value == null)
+            {
+                value = "";
+            }
             Value = value;
         }
     }
