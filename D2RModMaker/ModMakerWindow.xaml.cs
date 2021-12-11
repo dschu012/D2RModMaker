@@ -49,18 +49,18 @@ namespace D2RModMaker
                 checkbox.Checked += (s, e) =>
                 {
                     plugin.Value.Enabled = true;
-                    ((UserControl)box.Content).Visibility = Visibility.Visible;
+                    box.Content = plugin.Value.UI;
                 };
                 checkbox.Unchecked += (s, e) =>
                 {
                     plugin.Value.Enabled = false;
-                    ((UserControl)box.Content).Visibility = Visibility.Hidden;
+                    box.Content = null;
                 };
                 header.Children.Add(checkbox);
                 header.Children.Add(new TextBlock { Text = plugin.Value.PluginName, Margin = new Thickness(5, 0, 0, 0) });
                 box.Header = header;
-                box.Content = plugin.Value.UI;
-                ((UserControl)box.Content).Visibility = plugin.Value.Enabled ? Visibility.Visible : Visibility.Hidden;
+                box.Content = plugin.Value.Enabled ? plugin.Value.UI : null;
+                //((UserControl)box.Content).Visibility = plugin.Value.Enabled ? Visibility.Visible : Visibility.Hidden;
                 PluginPanel.Children.Add(box);
             }
             _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
@@ -98,7 +98,9 @@ namespace D2RModMaker
             Directory.CreateDirectory(modInfo.Path);
 
 
-            modInfo.Files = Plugins.SelectMany(plugin => plugin.Value.RequiredFiles)
+            modInfo.Files = Plugins
+                .Where(plugin => plugin.Value.Enabled)
+                .SelectMany(plugin => plugin.Value.RequiredFiles)
                 .ToArray();
 
             ExecuteContext context = new ExecuteContext();
@@ -142,7 +144,9 @@ namespace D2RModMaker
 
             foreach (var plugin in Plugins)
             {
-                plugin.Value.Execute(context);
+                if(plugin.Value.Enabled) { 
+                    plugin.Value.Execute(context);
+                }
             }
 
             File.WriteAllText(Path.Combine(modInfo.Path, "modinfo.json"), $"{{\n\t\"name\":\"{ modInfo.Name }\",\n\t\"savepath\":\"{ modInfo.SavePath }\"\n}}");
@@ -157,14 +161,5 @@ namespace D2RModMaker
             Process.Start(Path.Combine(_installPath, "D2R.exe"), "-mod d2rmm -txt");
         }
 
-        private void Plugin_Disabled(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Plugin_Enabled(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

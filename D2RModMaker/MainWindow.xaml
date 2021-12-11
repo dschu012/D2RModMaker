@@ -28,7 +28,6 @@
         </ListView>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Button>New</Button>
-            <Button>Edit</Button>
             <Button>Delete</Button>
             <Button>Launch</Button>
         </StackPanel>

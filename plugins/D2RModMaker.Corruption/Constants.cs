@@ -8,6 +8,11 @@ namespace D2RModMaker.Corruption
     }
     public class Constants
     {
+        public static readonly List<string> Qualities = new List<string>()
+        {
+            "uni", "set", "crf", "rar", "mag", "hig", "nor", "low"
+        };
+
         public static readonly Dictionary<string,string> BrickQualities = new Dictionary<string, string>()
         {
             { "uni", "rar" },

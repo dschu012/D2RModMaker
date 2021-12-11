@@ -13,4 +13,3 @@ TODOs:
 * token recipe
 * melee splash dmg
 * set/uniq generator
-* vaal orbs/poe corruption?

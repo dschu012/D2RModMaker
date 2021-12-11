@@ -1,4 +1,5 @@
 ﻿using D2RModMaker.Api;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -28,13 +29,6 @@ namespace D2RModMaker.Corruption
     [Export(typeof(IPlugin))]
     public partial class Plugin : UserControl, IPlugin
     {
-        //constants used for txt/json files
-        private static readonly string ItemName = "Scroll of Corruption";
-        private static readonly string ItemCode = "666";
-        private static readonly int StartingStatId = 361;
-        private static readonly string ItemTypeName = "Scroll of Corruption";
-        private static readonly string ItemTypeCode = "corb";
-
 
         public string PluginName { get; set; } = "Item Corruption";
         public bool Enabled { get; set; } = true;
@@ -60,7 +54,7 @@ namespace D2RModMaker.Corruption
             {
                 using (var streamReader = new StreamReader(json))
                 {
-                    Settings.ItemTiers = JToken.Parse(streamReader.ReadToEnd());
+                    Settings = JsonConvert.DeserializeObject<Model.Settings>(streamReader.ReadToEnd());
                 }
             }
             InitializeComponent();
@@ -90,7 +84,7 @@ namespace D2RModMaker.Corruption
             JArray root = (JArray)StreamUtils.ReadJSONFile(file);
 
             root.Add(new JObject {
-              new JProperty( $"{ItemCode}", new JObject { new JProperty ( "asset", "scroll/identify_scroll" ) } )
+              new JProperty( $"{Settings.ItemCode}", new JObject { new JProperty ( "asset", "scroll/identify_scroll" ) } )
             });
 
             StreamUtils.WriteJSONFile(file, root);
@@ -99,15 +93,15 @@ namespace D2RModMaker.Corruption
         private void AddCorruptionMiscItemType(ExecuteContext Context)
         {
             var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/ItemTypes.txt"]);
-            var row = txt.GetByColumnAndValue("Code", $"{ItemTypeCode}");
+            var row = txt.GetByColumnAndValue("Code", $"{Settings.ItemTypeCode}");
             if (row == null)
             {
                 row = new TXTRow(txt.Columns, new string[txt.Columns.Count]);
                 txt.Rows.Add(row);
             }
 
-            row["ItemType"].Value = $"{ItemTypeName}";
-            row["Code"].Value = $"{ItemTypeCode}";
+            row["ItemType"].Value = $"{Settings.ItemTypeName}";
+            row["Code"].Value = $"{Settings.ItemTypeCode}";
             row["Equiv1"].Value = "misc";
             row["Equiv2"].Value = "";
             row["Repair"].Value = "0";
@@ -156,7 +150,7 @@ namespace D2RModMaker.Corruption
                 txt.Rows.Add(row);
             } 
             row["Stat"].Value = "item_corruption";
-            row["*ID"].Value = StartingStatId.ToString("0");
+            row["*ID"].Value = Settings.StatId;
             row["Send Other"].Value = "";
             row["Signed"].Value = "";
             row["Send Bits"].Value = "1";
@@ -263,7 +257,7 @@ namespace D2RModMaker.Corruption
         private void AddCorruptionMiscItem(ExecuteContext Context)
         {
             var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/misc.txt"]);
-            var row = txt.GetByColumnAndValue("name", $"{ItemName}");
+            var row = txt.GetByColumnAndValue("name", $"{Settings.ItemName}");
 
             if (row == null)
             {
@@ -272,7 +266,7 @@ namespace D2RModMaker.Corruption
             }
             
             //all rows in an unmodified txt
-            row["name"].Value = $"{ItemName}";
+            row["name"].Value = $"{Settings.ItemName}";
             row["compactsave"].Value = "0";
             row["version"].Value = "100";
             row["level"].Value = "1";
@@ -286,9 +280,9 @@ namespace D2RModMaker.Corruption
             row["nodurability"].Value = "1";
             row["cost"].Value = "0";
             row["gamble cost"].Value = "";
-            row["code"].Value = $"{ItemCode}";
+            row["code"].Value = $"{Settings.ItemCode}";
             row["alternategfx"].Value = "rsc";
-            row["namestr"].Value = $"{ItemCode}";
+            row["namestr"].Value = $"{Settings.ItemCode}";
             row["component"].Value = "16";
             row["invwidth"].Value = "1";
             row["invheight"].Value = "1";
@@ -428,7 +422,7 @@ namespace D2RModMaker.Corruption
             row["JamellaMagicMin"].Value = "";
             row["JamellaMagicMax"].Value = "";
             row["JamellaMagicLvl"].Value = "255";
-            row["Transform"].Value = "5";
+            row["Transform"].Value = "0";
             row["InvTrans"].Value = "8";
             row["SkipName"].Value = "1";
             row["NightmareUpgrade"].Value = "xxx";
@@ -467,19 +461,17 @@ namespace D2RModMaker.Corruption
         {
             var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/UniqueItems.txt"]);
 
-            var settings = (IDictionary<string, object>)Settings;
             int max = 0;
             //how many unq items do we need to make
 
-            var arr = (JArray)Settings.ItemTiers;
-            foreach(var entry in arr)
+            foreach(var entry in Settings.Corruptions)
             {
                 int count = 0;
-                count += entry["brick"].Value<int>();
-                foreach(var tier in entry["tiers"])
+                count += (int)entry.Brick;
+                foreach(var tier in entry.Tiers)
                 {
-                    int weight = tier["weight"].Value<int>();
-                    int mods = tier["mods"].Count();
+                    int weight = (int)tier.Weight;
+                    int mods = tier.Mods.Count;
                     count += weight * mods;
                 }
                 if(count > max)
@@ -490,14 +482,14 @@ namespace D2RModMaker.Corruption
 
             for (int i = 1; i <= max; i++) { 
                 AddOrEditUniqueItem(txt, new Dictionary<string, string>() {
-                    { "index", $"{ItemName} {i.ToString("0")}" },
+                    { "index", $"{Settings.ItemName} {i.ToString("0")}" },
                     {"*ID", ""  },
                     {"rarity", "1" },
                     {"nolimit","1" },
                     { "lvl", "1"},
                     { "lvl req", "1" },
-                    { "code", $"{ItemCode}" },
-                    { "*ItemName", $"{ItemName} {i.ToString("0")}" },
+                    { "code", $"{Settings.ItemCode}" },
+                    { "*ItemName", $"{Settings.ItemName} {i.ToString("0")}" },
                     { "cost mult", "5" },
                     { "cost add", "5000" },
                     { "invtransform", "cred" },
@@ -530,17 +522,17 @@ namespace D2RModMaker.Corruption
             }
         }
 
-        private string GetTierStats(JToken entry)
+        private string GetTierStats(Model.Corruption entry)
         {
-            var brick = entry["brick"].Value<int>();
-            var tierCount = entry["tiers"].Count();
+            var brick = entry.Brick;
+            var tierCount = entry.Tiers.Count;
             var tierCounts = new int[tierCount];
             var total = brick;
             for (int tierIdx = 0; tierIdx < tierCount; tierIdx++)
             {
-                var tier = entry["tiers"][tierIdx];
-                var weight = tier["weight"].Value<int>();
-                tierCounts[tierIdx] = tier["mods"].Count() * weight;
+                var tier = entry.Tiers[tierIdx];
+                var weight = tier.Weight;
+                tierCounts[tierIdx] = tier.Mods.Count * (int)weight;
                 total += tierCounts[tierIdx];
             }
             var strings = new string[tierCount];
@@ -567,40 +559,39 @@ namespace D2RModMaker.Corruption
             });
 
             AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
-                { "description", $"{ItemName}"},
+                { "description", $"{Settings.ItemName}"},
                 {"numinputs", "1" },
                 {"input 1", "hp1" },
-                {"output",$"{ItemCode},uni" },
+                {"output",$"{Settings.ItemCode},uni" },
                 //{ "lvl", "99"},
             });
 
             //real recipes
             AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
-                { "description", $"Unique Item + Any Potion -> {ItemName}"},
+                { "description", $"Unique Item + Any Potion -> {Settings.ItemName}"},
                 {"numinputs", "2" },
                 {"input 1", "uni" },
                 {"input 2", "poti" },
-                {"output",$"{ItemCode},uni" },
+                {"output",$"{Settings.ItemCode},uni" },
                 //{ "lvl", "99"},
             });
             AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
-                { "description", $"Set Item + Any Potion -> {ItemName}"},
+                { "description", $"Set Item + Any Potion -> {Settings.ItemName}"},
                 {"numinputs", "2" },
                 {"input 1", "set" },
                 {"input 2", "poti" },
-                {"output",$"{ItemCode},uni" },
+                {"output",$"{Settings.ItemCode},uni" },
                 //{ "lvl", "99"},
             });
 
             //iterate data.json to build all recipes
-            var arr = (JArray)Settings.ItemTiers;
-            foreach(var entry in arr)
+            foreach(var entry in Settings.Corruptions)
             {
-                var type = entry["type"].Value<string>();
+                var type = entry.Name;
                 var dictionary = new Dictionary<string, string>() {
                     //only allow if not already corrupted
                     { "op", "17" },
-                    { "param", StartingStatId.ToString("0") },
+                    { "param", Settings.StatId },
                     { "value", "1" },
 
                     {"numinputs", "2" },
@@ -610,12 +601,11 @@ namespace D2RModMaker.Corruption
                     {"mod 1 min", "1" },
                     {"mod 1 max", "1" },
                 };
-                foreach(var q in entry["qualities"])
+                foreach(var quality in entry.Qualities)
                 {
                     int i = 1;
-                    var quality = q.Value<string>();
-                    var brick = entry["brick"].Value<int>();
-                    var tierCount = entry["tiers"].Count();
+                    var brick = entry.Brick;
+                    var tierCount = entry.Tiers.Count;
 
                     AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
                         { "description", $"### Tier Stats ({type},{quality},{ GetTierStats(entry) }) ###"},
@@ -624,22 +614,37 @@ namespace D2RModMaker.Corruption
 
                     for (int tierIdx = 0; tierIdx < tierCount; tierIdx++)
                     {
-                        var tier = entry["tiers"][tierIdx];
-                        var weight = tier["weight"].Value<int>();
-                        int count = tier["mods"].Count() * weight;
+                        var tier = entry.Tiers[tierIdx];
+                        var weight = (int)tier.Weight;
+                        int count = tier.Mods.Count * weight;
                         for (int j = 0; j < count; j++)
                         {
                             dictionary["input 1"] = $"{type},{quality}";
                             dictionary["description"] = $"Corrupt {type},{quality},tier={tierIdx+1}";
-                            dictionary["input 2"] = $"{ItemName} {(i++).ToString("0")}";
-                            var mods = tier["mods"][j / weight];
+                            dictionary["input 2"] = $"{Settings.ItemName} {(i++).ToString("0")}";
+                            var mods = tier.Mods[j / weight];
                             for (int k = 0; k < 4; k++)
                             {
-                                dictionary[$"mod {k + 2}"] = mods[$"stat{k + 1}"]?.Value<string>() ?? "";
-                                dictionary[$"mod {k + 2} chance"] = mods[$"chance{k + 1}"]?.Value<string>() ?? "";
-                                dictionary[$"mod {k + 2} param"] = mods[$"param{k + 1}"]?.Value<string>() ?? "";
-                                dictionary[$"mod {k + 2} min"] = mods[$"min{k + 1}"]?.Value<string>() ?? "";
-                                dictionary[$"mod {k + 2} max"] = mods[$"max{k + 1}"]?.Value<string>() ?? "";
+                                dictionary[$"mod 2"] = mods.Stat1;
+                                dictionary[$"mod 2 chance"] = mods.Chance1;
+                                dictionary[$"mod 2 param"] = mods.Param1;
+                                dictionary[$"mod 2 min"] = mods.Min1;
+                                dictionary[$"mod 2 max"] = mods.Max1;
+                                dictionary[$"mod 3"] = mods.Stat2;
+                                dictionary[$"mod 3 chance"] = mods.Chance2;
+                                dictionary[$"mod 3 param"] = mods.Param2;
+                                dictionary[$"mod 3 min"] = mods.Min2;
+                                dictionary[$"mod 3 max"] = mods.Max2;
+                                dictionary[$"mod 4"] = mods.Stat3;
+                                dictionary[$"mod 4 chance"] = mods.Chance3;
+                                dictionary[$"mod 4 param"] = mods.Param3;
+                                dictionary[$"mod 4 min"] = mods.Min3;
+                                dictionary[$"mod 4 max"] = mods.Max3;
+                                dictionary[$"mod 5"] = mods.Stat4;
+                                dictionary[$"mod 5 chance"] = mods.Chance4;
+                                dictionary[$"mod 5 param"] = mods.Param4;
+                                dictionary[$"mod 5 min"] = mods.Min4;
+                                dictionary[$"mod 5 max"] = mods.Max4;
                             }
                             AddOrEditCubeMainRecipe(txt, dictionary);
                         }
@@ -656,7 +661,7 @@ namespace D2RModMaker.Corruption
                     {
                         dictionary["input 1"] = $"{type},{quality}";
                         dictionary["description"] = $"Corrupt {type},{quality},brick";
-                        dictionary["input 2"] = $"{ItemName} {(i++).ToString("0")}";
+                        dictionary["input 2"] = $"{Settings.ItemName} {(i++).ToString("0")}";
                         var output = Constants.BrickQualities[quality];
                         if(string.IsNullOrEmpty(output))
                         {

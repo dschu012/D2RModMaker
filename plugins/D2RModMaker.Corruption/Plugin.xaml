@@ -7,11 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Name="CorruptionPlugin">
-    <Grid>
-        <!--
+    <Grid Margin="10">
+        <Grid.Resources>
+            <!-- Default settings for controls -->
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Margin" Value="5,5,5,5" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path=Settings.Corruptions, ElementName=CorruptionPlugin, Mode=TwoWay}"
+                  DisplayMemberPath="Label">
+        </ListView>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Button>Edit</Button>
+        </StackPanel>
+    </Grid>
+    <!--
         <DataGrid ItemsSource="{Binding Path=Settings.Tier1ArmorStats, ElementName=CorruptionPlugin, Mode=TwoWay}"
                   CanUserAddRows="False" CanUserDeleteRows="False">
         </DataGrid>
         -->
-    </Grid>
 </UserControl>
