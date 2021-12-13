@@ -28,6 +28,8 @@ namespace D2RModMaker.Speed
         public string PluginName { get; set; } = "Speed";
         public bool Enabled { get; set; } = true;
         public dynamic Settings { get; set; } = new ExpandoObject();
+        public int DisplayOrder { get; } = int.MinValue;
+        public int ExecutionOrder { get; } = int.MaxValue;
 
         public string[] RequiredFiles { get; } = new string[]
         {

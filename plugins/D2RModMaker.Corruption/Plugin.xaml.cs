@@ -22,6 +22,8 @@ namespace D2RModMaker.Corruption
 
         public string PluginName { get; set; } = "Item Corruption";
         public bool Enabled { get; set; } = true;
+        public int DisplayOrder { get; } = int.MinValue;
+        public int ExecutionOrder { get; } = int.MaxValue;
 
         public dynamic Settings { get; set; } = new ExpandoObject();
 
@@ -1175,6 +1177,10 @@ namespace D2RModMaker.Corruption
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var select = (Model.Corruption)CorruptionListView.SelectedItem;
+            if(select == null)
+            {
+                return;
+            }
             Editor editor = new Editor(select);
             _window.Closed += (object sender, EventArgs e) => editor.Close();
             editor.Closed += (object sender, EventArgs e) =>

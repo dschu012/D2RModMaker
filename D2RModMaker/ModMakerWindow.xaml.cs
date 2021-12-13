@@ -22,7 +22,7 @@ namespace D2RModMaker
         private CompositionContainer _container;
 
         [ImportMany(typeof(IPlugin))]
-        private IEnumerable<Lazy<IPlugin>> Plugins;
+        private List<Lazy<IPlugin>> Plugins;
 
         private string _installPath;
 
@@ -49,7 +49,7 @@ namespace D2RModMaker
             _container.ComposeParts(this);
 
 
-
+            Plugins.Sort((o1, o2) => o2.Value.DisplayOrder.CompareTo(o1.Value.DisplayOrder));
             foreach (var plugin in Plugins)
             {
                 //this doesnt seem like a good idea
@@ -155,6 +155,7 @@ namespace D2RModMaker
             //extracting the files uses a lot of memory, collect it here.
             GC.Collect();
 
+            Plugins.Sort((o1, o2) => o2.Value.ExecutionOrder.CompareTo(o1.Value.ExecutionOrder));
             foreach (var plugin in Plugins)
             {
                 if(plugin.Value.Enabled) { 

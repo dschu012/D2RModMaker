@@ -21,6 +21,8 @@ namespace D2RModMaker.QualityOfLife
         public string PluginName { get; set; } = "Quality of Life";
         public bool Enabled { get; set; } = true;
         public dynamic Settings { get; set; } = new ExpandoObject();
+        public int DisplayOrder { get; } = int.MaxValue;
+        public int ExecutionOrder { get; } = int.MinValue;
         public UserControl UI { get { return this; } }
 
         public string[] RequiredFiles { get

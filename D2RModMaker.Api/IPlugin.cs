@@ -14,6 +14,12 @@ namespace D2RModMaker.Api
         UserControl UI { get; }
         string[] RequiredFiles { get; }
 
+        //Order Sorted in the UI. Higher number ordered first.
+        int DisplayOrder { get; }
+
+        //Order txt changes get executed. Higher number goes first.
+        int ExecutionOrder { get; }
+
         void Initialize(Window window);
         void Execute(ExecuteContext Context);
 
