@@ -23,7 +23,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0">Mods:</Label>
-        <ListView Grid.Column="0" Grid.Row="1">
+        <ListView Grid.Column="0" Grid.Row="1" Name="ModsListView" SelectionMode="Single">
             <ListViewItem>D2RMM</ListViewItem>
         </ListView>
         <StackPanel Grid.Column="1" Grid.Row="1">

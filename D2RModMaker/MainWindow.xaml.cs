@@ -21,10 +21,18 @@ namespace D2RModMaker
     public partial class MainWindow : Window
     {
 
+        private string _installPath;
+
         private ModMakerWindow _modMakerWindow;
 
         public MainWindow()
         {
+            _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
+            if (_installPath == null)
+            {
+                return;
+            }
+
             InitializeComponent();
             _modMakerWindow = new ModMakerWindow();
             _modMakerWindow.Show();

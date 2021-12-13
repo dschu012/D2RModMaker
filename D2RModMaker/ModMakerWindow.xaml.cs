@@ -30,14 +30,25 @@ namespace D2RModMaker
         public ModMakerWindow()
         {
             InitializeComponent();
+
+            _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
+            if (_installPath == null)
+            {
+                return;
+            }
+
+            //cant seem to get this working in a plugins folder...
+            /*
             if (!Directory.Exists("plugins"))
                 Directory.CreateDirectory("plugins");
-
+            */
             _container = new CompositionContainer(new AggregateCatalog(
-                new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory),
-                new DirectoryCatalog("plugins")
+                new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory)
+                //new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plugins"))
             ));
             _container.ComposeParts(this);
+
+
 
             foreach (var plugin in Plugins)
             {
@@ -61,12 +72,10 @@ namespace D2RModMaker
                 box.Header = header;
                 box.Content = plugin.Value.Enabled ? plugin.Value.UI : null;
                 //((UserControl)box.Content).Visibility = plugin.Value.Enabled ? Visibility.Visible : Visibility.Hidden;
+
+                plugin.Value.Initialize(this);
+
                 PluginPanel.Children.Add(box);
-            }
-            _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
-            if (_installPath == null)
-            {
-                return;
             }
         }
 
@@ -117,6 +126,10 @@ namespace D2RModMaker
                     Debug.WriteLine(file.FileName);
                 }
                 if (file.FileName.Contains("data/global/excel"))
+                {
+                    Debug.WriteLine(file.FileName);
+                }
+                if(file.FileName.ToLower().Contains("/layouts"))
                 {
                     Debug.WriteLine(file.FileName);
                 }

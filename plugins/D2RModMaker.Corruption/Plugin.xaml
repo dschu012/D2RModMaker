@@ -23,15 +23,10 @@
             <RowDefinition Height="150"></RowDefinition>
         </Grid.RowDefinitions>
         <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path=Settings.Corruptions, ElementName=CorruptionPlugin, Mode=TwoWay}"
-                  DisplayMemberPath="Label">
+                  SelectionMode="Single" DisplayMemberPath="Label" Name="CorruptionListView">
         </ListView>
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <Button>Edit</Button>
+            <Button Click="Button_Click">Edit</Button>
         </StackPanel>
     </Grid>
-    <!--
-        <DataGrid ItemsSource="{Binding Path=Settings.Tier1ArmorStats, ElementName=CorruptionPlugin, Mode=TwoWay}"
-                  CanUserAddRows="False" CanUserDeleteRows="False">
-        </DataGrid>
-        -->
 </UserControl>

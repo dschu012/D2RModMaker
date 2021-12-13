@@ -1,0 +1,107 @@
+﻿<Window x:Class="D2RModMaker.Corruption.Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:D2RModMaker.Corruption"
+        mc:Ignorable="d"
+        Title="Editor" Height="450" Width="850"
+        Name="CorruptionPluginEditor">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="0,3,5,5" />
+                    <Setter Property="Padding" Value="0,0,0,5" />
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="0,0,0,5" />
+                </Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Width" Value="70" />
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="Margin" Value="5,0,0,0" />
+                </Style>
+            </StackPanel.Resources>
+            <WrapPanel>
+                <GroupBox Header="Info">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0">Name:</Label>
+                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=Corruption.Label, ElementName=CorruptionPluginEditor, Mode=TwoWay}"></Label>
+                        <Label Grid.Row="1" Grid.Column="0">Cube Main Name:</Label>
+                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=Corruption.Name, ElementName=CorruptionPluginEditor, Mode=TwoWay}"></Label>
+                        <Label Grid.Row="2" Grid.Column="0">Brick Chance:</Label>
+                        <Slider Grid.Row="2" Grid.Column="1" Style="{StaticResource Spinner}" TickFrequency="1" Maximum="100" Value="{Binding Path=Corruption.Brick, ElementName=CorruptionPluginEditor, Mode=TwoWay}" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Qualities Allowed">
+                    <Grid>
+                        <Grid.Resources>
+                            <!-- Default settings for controls -->
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="25" />
+                                <Setter Property="Margin" Value="5,5,5,5" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ListView ItemsSource="{Binding Path=Corruption.Qualities, ElementName=CorruptionPluginEditor, Mode=TwoWay}"
+                            SelectionMode="Single" Name="CorruptionQualititesListView"></ListView>
+                        <StackPanel Grid.Column="1" Grid.Row="0">
+                            <Button>Add</Button>
+                            <Button>Remove</Button>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Statistics">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Click="Button_Click">Refresh</Button>
+                        <TextBlock Grid.Row="1" Name="StatisticTextBlock"></TextBlock>
+                    </Grid>
+                </GroupBox>
+            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding Path=Corruption.Tiers, ElementName=CorruptionPluginEditor, Mode=TwoWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <GroupBox Header="Tier">
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>Weight:</Label>
+                                    <Slider Style="{StaticResource Spinner}" TickFrequency="1" Maximum="100" Value="{Binding Path=Weight}" />
+                                </StackPanel>
+                                <DataGrid ItemsSource="{Binding Path=Mods, Mode=TwoWay}">
+                                </DataGrid>
+                            </StackPanel>
+                        </GroupBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

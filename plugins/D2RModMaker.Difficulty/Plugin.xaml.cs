@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace D2RModMaker.Difficulty
@@ -30,9 +31,12 @@ namespace D2RModMaker.Difficulty
         {
             Settings.MonsterQuanityScale = 1.0;
             Settings.HPScale = 1.0;
+            Settings.DamageScale = 1.0;
             Settings.XPScale = 1.0;
             InitializeComponent();
         }
+
+        public void Initialize(Window window) { }
 
         public void Execute(ExecuteContext Context)
         {
@@ -74,6 +78,20 @@ namespace D2RModMaker.Difficulty
                 row["MaxHP(N)"].Value = (baserow["MaxHP(N)"].ToUInt32() * Settings.HPScale).ToString("0");
                 row["MinHP(H)"].Value = (baserow["MinHP(H)"].ToUInt32() * Settings.HPScale).ToString("0");
                 row["MaxHP(H)"].Value = (baserow["MaxHP(H)"].ToUInt32() * Settings.HPScale).ToString("0");
+
+                row["A1MinD"].Value = (baserow["A1MinD"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["A1MaxD"].Value = (baserow["A1MaxD"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MinD"].Value = (baserow["S1MinD"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MaxD"].Value = (baserow["S1MaxD"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["A1MinD(N)"].Value = (baserow["A1MinD(N)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["A1MaxD(N)"].Value = (baserow["A1MaxD(N)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MinD(N)"].Value = (baserow["S1MinD(N)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MaxD(N)"].Value = (baserow["S1MaxD(N)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["A1MinD(H)"].Value = (baserow["A1MinD(H)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["A1MaxD(H)"].Value = (baserow["A1MaxD(H)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MinD(H)"].Value = (baserow["S1MinD(H)"].ToUInt32() * Settings.DamageScale).ToString("0");
+                row["S1MaxD(H)"].Value = (baserow["S1MaxD(H)"].ToUInt32() * Settings.DamageScale).ToString("0");
+
 
                 row["Exp"].Value = (baserow["Exp"].ToUInt32() * Settings.XPScale).ToString("0");
                 row["Exp(N)"].Value = (baserow["Exp(N)"].ToUInt32() * Settings.XPScale).ToString("0");

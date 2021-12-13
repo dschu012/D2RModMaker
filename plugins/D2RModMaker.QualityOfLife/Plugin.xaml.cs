@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace D2RModMaker.QualityOfLife
@@ -92,6 +93,8 @@ namespace D2RModMaker.QualityOfLife
 
             InitializeComponent();
         }
+
+        public void Initialize(Window window) { }
 
         public void Execute(ExecuteContext Context)
         {

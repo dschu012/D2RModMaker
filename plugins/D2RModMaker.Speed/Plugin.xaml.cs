@@ -47,6 +47,8 @@ namespace D2RModMaker.Speed
             InitializeComponent();
         }
 
+        public void Initialize(Window window) { }
+
         public void Execute(ExecuteContext Context)
         {
             var basecharstatstxt = TXTFile.Read(Context.UnmodifiedFiles[@"data:data/global/excel/charstats.txt"]);

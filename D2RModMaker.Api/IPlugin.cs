@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace D2RModMaker.Api
@@ -13,6 +14,7 @@ namespace D2RModMaker.Api
         UserControl UI { get; }
         string[] RequiredFiles { get; }
 
+        void Initialize(Window window);
         void Execute(ExecuteContext Context);
 
 

@@ -24,8 +24,14 @@ namespace D2RModMaker.Corruption
             [JsonProperty("itemtypecode")]
             public string ItemTypeCode { get; set; }
 
-            [JsonProperty("statid")]
-            public string StatId { get; set; }
+            [JsonProperty("method")]
+            public int Method { get; set; }
+
+            [JsonProperty("starting_stat_id")]
+            public int StartingStatID { get; set; }
+
+            [JsonProperty("starting_string_id")]
+            public int StartingStringID { get; set; }
 
             [JsonProperty("corruptions")]
             public List<Corruption> Corruptions { get; set; }
@@ -104,21 +110,6 @@ namespace D2RModMaker.Corruption
 
             [JsonProperty("max3")]
             public string Max3 { get; set; }
-
-            [JsonProperty("stat4")]
-            public string Stat4 { get; set; }
-
-            [JsonProperty("chance4")]
-            public string Chance4 { get; set; }
-
-            [JsonProperty("param4")]
-            public string Param4 { get; set; }
-
-            [JsonProperty("min4")]
-            public string Min4 { get; set; }
-
-            [JsonProperty("max4")]
-            public string Max4 { get; set; }
         }
 
     }

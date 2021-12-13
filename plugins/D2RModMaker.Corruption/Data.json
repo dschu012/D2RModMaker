@@ -3,7 +3,11 @@
   "itemcode": "666",
   "itemtypename": "Scroll of Corruption",
   "itemtypecode": "corb",
-  "statid": "361",
+  //1 == click cube button twice (1 unq item in unq.txt), 2 == click cube button once (N unq items in unq.txt)
+  //1 seems slightly cleaner
+  "method": 1,
+  "starting_stat_id": 361,
+  "starting_string_id": 50000,
   "corruptions": [
     {
       "name": "tors",
@@ -11,7 +15,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 tors
         {
           "weight": 1,
           "mods": [
@@ -22,9 +26,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 tors
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 tors
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -41,7 +56,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 shld
         {
           "weight": 1,
           "mods": [
@@ -52,9 +67,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 shld
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 shld
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -71,7 +97,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 helm
         {
           "weight": 1,
           "mods": [
@@ -82,9 +108,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 helm
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 helm
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -101,7 +138,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 belt
         {
           "weight": 1,
           "mods": [
@@ -112,9 +149,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 belt
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 belt
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -131,7 +179,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 boot
         {
           "weight": 1,
           "mods": [
@@ -142,9 +190,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 boot
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 boot
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -161,7 +220,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 glov
         {
           "weight": 1,
           "mods": [
@@ -172,9 +231,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 glov
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 glov
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -191,7 +261,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 ring
         {
           "weight": 1,
           "mods": [
@@ -202,9 +272,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 ring
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 ring
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
@@ -221,7 +302,7 @@
       "brick": 35,
       "qualities": ["uni","set","crf","rar","mag","nor","low"],
       "tiers": [
-        //tier 1 armor
+        //tier 1 amul
         {
           "weight": 1,
           "mods": [
@@ -232,9 +313,20 @@
             { "stat1": "hp%", "min1": "5", "max1": "10" }
           ]
         },
-        //tier 2 armor
+        //tier 2 amul
         {
           "weight": 5,
+          "mods": [
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" },
+            { "stat1": "allskills", "min1": "1", "max1": "1" }
+          ]
+        },
+        //tier 3 amul
+        {
+          "weight": 7,
           "mods": [
             { "stat1": "allskills", "min1": "1", "max1": "1" },
             { "stat1": "allskills", "min1": "1", "max1": "1" },
