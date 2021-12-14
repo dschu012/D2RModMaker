@@ -1,5 +1,6 @@
 ﻿using D2RModMaker.Api;
 using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -93,21 +94,22 @@ namespace D2RModMaker
             }
             */
             ModInfo modInfo = new ModInfo();
-            modInfo.Name = "d2rmm";
+            modInfo.Name = ModNameTextBox.Text;
             modInfo.SavePath = modInfo.Name;
-            modInfo.Path = System.IO.Path.Combine(_installPath, "mods", modInfo.Name, modInfo.Name + ".mpq");
+            modInfo.Args = ModArgsTextBox.Text;
+            var path = System.IO.Path.Combine(_installPath, "mods", modInfo.Name, modInfo.Name + ".mpq");
 
             
-            if(Directory.Exists(modInfo.Path))
+            if(Directory.Exists(path))
             {
-                Directory.Delete(modInfo.Path, true);
+                Directory.Delete(path, true);
                 //return;
             }
             
-            Directory.CreateDirectory(modInfo.Path);
+            Directory.CreateDirectory(path);
 
 
-            modInfo.Files = Plugins
+            var files = Plugins
                 .Where(plugin => plugin.Value.Enabled)
                 .SelectMany(plugin => plugin.Value.RequiredFiles)
                 .ToArray();
@@ -135,10 +137,10 @@ namespace D2RModMaker
                 }
             }
 
-            foreach (var file in modInfo.Files)
+            foreach (var file in files)
             {
                 var casc = _productHandler.m_rootFiles.First(rootFile => rootFile.FileName == file);
-                string fullPath = Path.Combine(modInfo.Path, file.Substring(5));
+                string fullPath = Path.Combine(path, file.Substring(5));
                 using (Stream s = _clientHandler.OpenCKey(casc.MD5)) {
                     StreamUtils.WriteStreamToFile(s, fullPath);
                 }
@@ -158,12 +160,13 @@ namespace D2RModMaker
             Plugins.Sort((o1, o2) => o2.Value.ExecutionOrder.CompareTo(o1.Value.ExecutionOrder));
             foreach (var plugin in Plugins)
             {
-                if(plugin.Value.Enabled) { 
+                if(plugin.Value.Enabled) {
+                    modInfo.Plugins[plugin.Value.PluginName] = plugin.Value.Settings;
                     plugin.Value.Execute(context);
                 }
             }
 
-            File.WriteAllText(Path.Combine(modInfo.Path, "modinfo.json"), $"{{\n\t\"name\":\"{ modInfo.Name }\",\n\t\"savepath\":\"{ modInfo.SavePath }\"\n}}");
+            StreamUtils.WriteJSONFile(Path.Combine(path, "modinfo.json"), JObject.FromObject(modInfo));
 
             Directory.Delete(tempDir, true);
 
@@ -172,7 +175,7 @@ namespace D2RModMaker
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(Path.Combine(_installPath, "D2R.exe"), "-mod d2rmm -txt");
+            Process.Start(Path.Combine(_installPath, "D2R.exe"), $"-mod {ModNameTextBox.Text} -txt {ModArgsTextBox.Text}");
         }
 
     }

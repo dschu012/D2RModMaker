@@ -30,9 +30,9 @@
             </Grid.RowDefinitions>
             <WrapPanel>
                 <Label>Mod Name:</Label>
-                <TextBox MinWidth="150" Margin="0,3,10,5"></TextBox>
+                <TextBox MinWidth="150" Margin="0,3,10,5" Name="ModNameTextBox">d2rmm</TextBox>
                 <Label>Additional Launch Args:</Label>
-                <TextBox MinWidth="250" Margin="0,3,10,5"></TextBox>
+                <TextBox MinWidth="250" Margin="0,3,10,5" Name="ModArgsTextBox">-enablerespec</TextBox>
             </WrapPanel>
             <StackPanel Grid.Row="1" Name="PluginPanel" Orientation="Vertical"></StackPanel>
             <Border Grid.Row="2" Padding="10">

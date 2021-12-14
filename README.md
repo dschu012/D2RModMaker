@@ -13,6 +13,8 @@ TODOs:
 * safe unsocket recipe
 * token recipe
 * melee splash dmg
+* move cain
+* scale monster size
 
 ## Plugins
 

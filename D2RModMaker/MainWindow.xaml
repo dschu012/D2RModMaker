@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:D2RModMaker"
         mc:Ignorable="d"
-        Title="D2RModMaker" Height="500" Width="350">
+        Title="D2RModMaker" Height="500" Width="350"
+        Name="MainWindowWindow">
     <Grid Margin="10">
         <Grid.Resources>
             <!-- Default settings for controls -->
@@ -23,13 +24,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0">Mods:</Label>
-        <ListView Grid.Column="0" Grid.Row="1" Name="ModsListView" SelectionMode="Single">
-            <ListViewItem>D2RMM</ListViewItem>
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=Mods, ElementName=MainWindowWindow, Mode=TwoWay}"
+                  Name="ModsListView" SelectionMode="Single" DisplayMemberPath="Name">
         </ListView>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Button>New</Button>
-            <Button>Delete</Button>
-            <Button>Launch</Button>
+            <Button Click="New_Click">New</Button>
+            <Button Click="Delete_Click">Delete</Button>
+            <Button Click="Launch_Click">Launch</Button>
         </StackPanel>
     </Grid>
 </Window>
