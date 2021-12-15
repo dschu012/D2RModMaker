@@ -27,12 +27,6 @@ namespace D2RModMaker.Corruption
             [JsonProperty("method")]
             public int Method { get; set; }
 
-            [JsonProperty("starting_stat_id")]
-            public int StartingStatID { get; set; }
-
-            [JsonProperty("starting_string_id")]
-            public int StartingStringID { get; set; }
-
             [JsonProperty("corruptions")]
             public List<Corruption> Corruptions { get; set; }
         }

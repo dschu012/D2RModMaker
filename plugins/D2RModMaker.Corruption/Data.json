@@ -6,8 +6,6 @@
   //1 == click cube button twice (1 unq item in unq.txt), 2 == click cube button once (N unq items in unq.txt)
   //1 seems slightly cleaner
   "method": 1,
-  "starting_stat_id": 361,
-  "starting_string_id": 50000,
   "corruptions": [
     {
       "name": "tors",

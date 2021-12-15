@@ -112,7 +112,8 @@ namespace D2RModMaker
             var files = Plugins
                 .Where(plugin => plugin.Value.Enabled)
                 .SelectMany(plugin => plugin.Value.RequiredFiles)
-                .ToArray();
+                .ToList();
+            files.Add(Constants.Files.NEXT_STRING_ID);
 
             ExecuteContext context = new ExecuteContext();
             context.ModPath = System.IO.Path.Combine(_installPath, "mods", modInfo.Name, modInfo.Name + ".mpq");
@@ -120,7 +121,7 @@ namespace D2RModMaker
             context.ModFiles = new Dictionary<string, string>();
             string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-            
+            //debugging
             foreach(var file in _productHandler.m_rootFiles)
             {
                 if(file.FileName.Contains("hd/global/video"))
@@ -131,7 +132,7 @@ namespace D2RModMaker
                 {
                     Debug.WriteLine(file.FileName);
                 }
-                if(file.FileName.ToLower().Contains("/layouts"))
+                if(file.FileName.ToLower().Contains("/lng"))
                 {
                     Debug.WriteLine(file.FileName);
                 }
@@ -142,13 +143,13 @@ namespace D2RModMaker
                 var casc = _productHandler.m_rootFiles.First(rootFile => rootFile.FileName == file);
                 string fullPath = Path.Combine(path, file.Substring(5));
                 using (Stream s = _clientHandler.OpenCKey(casc.MD5)) {
-                    StreamUtils.WriteStreamToFile(s, fullPath);
+                    Utils.WriteStreamToFile(s, fullPath);
                 }
                 context.ModFiles[file] = fullPath;
                 string tempPath = Path.Combine(tempDir, file.Substring(5));
                 using (Stream s = _clientHandler.OpenCKey(casc.MD5))
                 {
-                    StreamUtils.WriteStreamToFile(s, tempPath);
+                    Utils.WriteStreamToFile(s, tempPath);
                 }
                 context.UnmodifiedFiles[file] = tempPath;
             }
@@ -158,6 +159,8 @@ namespace D2RModMaker
             GC.Collect();
 
             Plugins.Sort((o1, o2) => o2.Value.ExecutionOrder.CompareTo(o1.Value.ExecutionOrder));
+
+            Utils.Init(context);
             foreach (var plugin in Plugins)
             {
                 if(plugin.Value.Enabled) {
@@ -165,8 +168,9 @@ namespace D2RModMaker
                     plugin.Value.Execute(context);
                 }
             }
+            Utils.Cleanup(context);
 
-            StreamUtils.WriteJSONFile(Path.Combine(path, "modinfo.json"), JObject.FromObject(modInfo));
+            Utils.WriteJSONFile(Path.Combine(path, "modinfo.json"), JObject.FromObject(modInfo));
 
             Directory.Delete(tempDir, true);
 

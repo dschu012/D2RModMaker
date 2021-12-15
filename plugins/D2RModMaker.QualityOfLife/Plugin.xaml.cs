@@ -256,27 +256,27 @@ namespace D2RModMaker.QualityOfLife
             foreach (var layout in layouts)
             {
                 var file = Context.ModFiles[@$"data:data/global/ui/Layouts/{ layout.Key }.json"];
-                var root = (JObject)StreamUtils.ReadJSONFile(file);
+                var root = (JObject)Utils.ReadJSONFile(file);
                 ProcessJSONChanges((JObject)layout.Value, root);
-                StreamUtils.WriteJSONFile(file, root);
+                Utils.WriteJSONFile(file, root);
             }
 
             layouts = (JObject)constants["ExpandedInventory"]["Expansion"]["Layouts"];
             foreach (var layout in layouts)
             {
                 var file = Context.ModFiles[@$"data:data/global/ui/Layouts/{ layout.Key }.json"];
-                var root = (JObject)StreamUtils.ReadJSONFile(file);
+                var root = (JObject)Utils.ReadJSONFile(file);
                 ProcessJSONChanges((JObject)layout.Value, root);
-                StreamUtils.WriteJSONFile(file, root);
+                Utils.WriteJSONFile(file, root);
             }
 
             //Update sprites
-            StreamUtils.WriteStreamToFile(
+            Utils.WriteStreamToFile(
                 ReadResourceFile(PluginResources.background_expanded2_lowend)
                 , Path.Combine(Context.ModPath, @"data/hd/global/ui/panel/inventory/background_expanded2.lowend.sprite"));
 
 
-            StreamUtils.WriteStreamToFile(
+            Utils.WriteStreamToFile(
                 ReadResourceFile(PluginResources.background_expanded2)
                 , Path.Combine(Context.ModPath, @"data/hd/global/ui/panel/inventory/background_expanded2.sprite"));
 

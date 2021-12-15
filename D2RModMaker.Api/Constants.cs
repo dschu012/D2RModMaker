@@ -54,5 +54,10 @@ namespace D2RModMaker.Api
             public static readonly string Pink = "ÿcO";
             public static readonly string Purple = "ÿc;";
         }
+
+        public static class Files
+        {
+            public static readonly string NEXT_STRING_ID = @"data:data/local/lng/NEXT_STRING_ID.txt";
+        }
     }
 }

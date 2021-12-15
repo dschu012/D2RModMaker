@@ -72,6 +72,15 @@ namespace D2RModMaker.Api
             return null;
         }
 
+        public string NextID()
+        {
+            if(Columns.ContainsKey("*ID"))
+            {
+                return (int.Parse(Rows[Rows.Count - 1]["*ID"].Value) + 1).ToString("0");
+            }
+            return "";
+        }
+
     }
 
     public class TXTRow

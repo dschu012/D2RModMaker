@@ -90,7 +90,7 @@ namespace D2RModMaker.Corruption
                 AddCubeRecipesMethod1(Context, MaxRecipes);
                 AddString(Context, @"data:data/local/lng/strings/item-names.json", new Dictionary<string, object>()
                 {
-                    { "id", Settings.StartingStringID + 4 },
+                    { "id", Utils.GetNextStringID(Context) },
                     { "Key", $"{Settings.ItemName}" },
                     { "enUS", $"{Settings.ItemName}" },
                 });
@@ -103,18 +103,17 @@ namespace D2RModMaker.Corruption
 
                 //add strings
                 var file = Context.ModFiles[@"data:data/local/lng/strings/item-names.json"];
-                JArray root = (JArray)StreamUtils.ReadJSONFile(file);
+                JArray root = (JArray)Utils.ReadJSONFile(file);
                 for (int i = 1; i <= MaxRecipes; i++)
                 {
-
                     root.Add(JObject.FromObject(new Dictionary<string, object>()
                     {
-                        { "id", Settings.StartingStringID + 4 + i },
+                        { "id", Utils.GetNextStringID(Context) },
                         { "Key", $"{Settings.ItemName} {i.ToString("0")}" },
                         { "enUS", $"{Settings.ItemName} {i.ToString("0")}" },
                     }));
                 }
-                StreamUtils.WriteJSONFile(file, root);
+                Utils.WriteJSONFile(file, root);
             }
 
             //add assets
@@ -123,26 +122,26 @@ namespace D2RModMaker.Corruption
             //add strings
             AddString(Context, @"data:data/local/lng/strings/item-modifiers.json", new Dictionary<string, object>()
             {
-                { "id", Settings.StartingStringID },
+                { "id", Utils.GetNextStringID(Context) },
                 { "Key", "ModCorruptionDesc" },
                 { "enUS", $"{D2RModMaker.Api.Constants.Colors.Yellow}Cube with an item to corrupted it." },
             });
             AddString(Context, @"data:data/local/lng/strings/item-modifiers.json", new Dictionary<string, object>()
             {
-                { "id", Settings.StartingStringID + 1 },
+                { "id", Utils.GetNextStringID(Context) },
                 { "Key", "ModCorruptedPosDesc" },
                 { "enUS", $"{D2RModMaker.Api.Constants.Colors.Red}Corrupted" },
             });
             AddString(Context, @"data:data/local/lng/strings/item-modifiers.json", new Dictionary<string, object>()
             {
-                { "id", Settings.StartingStringID + 2 },
+                { "id", Utils.GetNextStringID(Context) },
                 { "Key", "ModCorruptedNegDesc" },
                 { "enUS", $"{D2RModMaker.Api.Constants.Colors.Yellow}Corrupting - Cube again by itself to finished corruption." },
             });
             //only used for debugging
             AddString(Context, @"data:data/local/lng/strings/item-modifiers.json", new Dictionary<string, object>()
             {
-                { "id", Settings.StartingStringID + 3 },
+                { "id", Utils.GetNextStringID(Context) },
                 { "Key", "ModCorruptionRoll" },
                 { "enUS", $"Rolled" },
             });
@@ -151,22 +150,22 @@ namespace D2RModMaker.Corruption
         private void AddString(ExecuteContext Context, string File, Dictionary<string,object> Data)
         {
             var file = Context.ModFiles[File];
-            JArray root = (JArray)StreamUtils.ReadJSONFile(file);
+            JArray root = (JArray)Utils.ReadJSONFile(file);
             root.Add(JObject.FromObject(Data));
 
-            StreamUtils.WriteJSONFile(file, root);
+            Utils.WriteJSONFile(file, root);
         }
 
         private void AddItemsJsonAsset(ExecuteContext Context)
         {
             var file = Context.ModFiles[@"data:data/hd/items/items.json"];
-            JArray root = (JArray)StreamUtils.ReadJSONFile(file);
+            JArray root = (JArray)Utils.ReadJSONFile(file);
 
             root.Add(new JObject {
               new JProperty( $"{Settings.ItemCode}", new JObject { new JProperty ( "asset", "scroll/identify_scroll" ) } )
             });
 
-            StreamUtils.WriteJSONFile(file, root);
+            Utils.WriteJSONFile(file, root);
         }
 
         private void AddCorruptionMiscItemType(ExecuteContext Context)
@@ -226,10 +225,10 @@ namespace D2RModMaker.Corruption
             if (row == null)
             {
                 row = new TXTRow(txt.Columns, new string[txt.Columns.Count]);
+                row["*ID"].Value = txt.NextID();
                 txt.Rows.Add(row);
             } 
             row["Stat"].Value = "item_corrupted";
-            row["*ID"].Value = Settings.StartingStatID.ToString("0");
             row["Send Other"].Value = "";
             row["Signed"].Value = "1";
             row["Send Bits"].Value = "2";
@@ -267,7 +266,7 @@ namespace D2RModMaker.Corruption
             row["itemeventfunc2"].Value = "";
             row["descpriority"].Value = "254";
             row["descfunc"].Value = "3";
-            row["descval"].Value = "1";
+            row["descval"].Value = "0";
             row["descstrpos"].Value = "ModCorruptedPosDesc";
             row["descstrneg"].Value = "ModCorruptedNegDesc";
             row["descstr2"].Value = "";
@@ -291,10 +290,10 @@ namespace D2RModMaker.Corruption
             if (row == null)
             {
                 row = new TXTRow(txt.Columns, new string[txt.Columns.Count]);
+                row["*ID"].Value = txt.NextID();
                 txt.Rows.Add(row);
             }
             row["Stat"].Value = "item_corruption_desc";
-            row["*ID"].Value = (Settings.StartingStatID + 2).ToString("0");
             row["Send Other"].Value = "";
             row["Signed"].Value = "";
             row["Send Bits"].Value = "1";
@@ -356,10 +355,10 @@ namespace D2RModMaker.Corruption
             if (row == null)
             {
                 row = new TXTRow(txt.Columns, new string[txt.Columns.Count]);
+                row["*ID"].Value = txt.NextID();
                 txt.Rows.Add(row);
             }
             row["Stat"].Value = "item_corruption_roll";
-            row["*ID"].Value = (Settings.StartingStatID + 1).ToString("0");
             row["Send Other"].Value = "";
             row["Signed"].Value = "";
             row["Send Bits"].Value = "11";
@@ -397,8 +396,7 @@ namespace D2RModMaker.Corruption
             row["itemeventfunc2"].Value = "";
             row["descpriority"].Value = "1";
             row["descfunc"].Value = "3";
-            row["descval"].Value = "1";
-            //show as mana for now
+            row["descval"].Value = "0";
             row["descstrpos"].Value = "ModCorruptionRoll";
             row["descstrneg"].Value = "ModCorruptionRoll";
             row["descstr2"].Value = "";
@@ -928,6 +926,10 @@ namespace D2RModMaker.Corruption
         private void AddCubeRecipesMethod1(ExecuteContext Context, int MaxRecipes)
         {
             var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/cubemain.txt"]);
+            var isctxt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/ItemStatCost.txt"]);
+            var item_corruption_roll = isctxt.GetByColumnAndValue("Stat", "item_corruption_roll");
+            var item_corrupted = isctxt.GetByColumnAndValue("Stat", "item_corrupted");
+            var item_corruption_desc = isctxt.GetByColumnAndValue("Stat", "item_corruption_desc");
 
             //iterate data.json to build all recipes
             foreach (var entry in Settings.Corruptions)
@@ -935,8 +937,7 @@ namespace D2RModMaker.Corruption
                 var type = entry.Name;
                 var dictionary = new Dictionary<string, string>() {
                     { "op", "18" },
-                    { "param", (Settings.StartingStatID + 1).ToString("0") },
-                    { "value", "1" },
+                    { "param", item_corruption_roll["*ID"].Value },
                     {"numinputs", "1" },
                     {"output","useitem" },
                     //{ "lvl", "99" },
@@ -962,7 +963,7 @@ namespace D2RModMaker.Corruption
                     AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
                         { "description", $"Add Corruption Roll ({type},{quality})"},
                         { "op", "18" },
-                        { "param", Settings.StartingStatID.ToString("0") },
+                        { "param", item_corrupted["*ID"].Value },
                         { "value", "0" },
                         {"numinputs", "2" },
                         {"input 1", $"{type},{quality}" },
@@ -1042,6 +1043,10 @@ namespace D2RModMaker.Corruption
         private void AddCubeRecipesMethod2(ExecuteContext Context)
         {
             var txt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/cubemain.txt"]);
+            var isctxt = TXTFile.Read(Context.ModFiles[@"data:data/global/excel/ItemStatCost.txt"]);
+            var item_corruption_roll = isctxt.GetByColumnAndValue("Stat", "item_corruption_roll");
+            var item_corrupted = isctxt.GetByColumnAndValue("Stat", "item_corrupted");
+            var item_corruption_desc = isctxt.GetByColumnAndValue("Stat", "item_corruption_desc");
 
             //testing recipes
             AddOrEditCubeMainRecipe(txt, new Dictionary<string, string>() {
@@ -1086,7 +1091,7 @@ namespace D2RModMaker.Corruption
                 var dictionary = new Dictionary<string, string>() {
                     //only allow if not already corrupted
                     { "op", "17" },
-                    { "param", Settings.StartingStatID.ToString("0") },
+                    { "param", item_corrupted["*ID"].Value },
                     { "value", "1" },
 
                     {"numinputs", "2" },
