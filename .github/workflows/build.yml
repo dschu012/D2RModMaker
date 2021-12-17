@@ -19,7 +19,12 @@ jobs:
         nuget restore D2RModMaker.sln
         msbuild /t:D2RModMaker:Rebuild /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=None D2RModMaker.sln
     - name: Zip release
-      uses: papeloto/action-zip@v1
+      uses: thedoctor0/zip-release@0.6.0
+      with:
+        directory: D2RModMaker\bin\Release\net5.0-windows
+        filename: D2RModMaker.zip
+        exclusions: |
+          ref/*
       with:
         files: D2RModMaker\bin\Release\net5.0-windows
         recursive: false
