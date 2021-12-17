@@ -23,6 +23,7 @@ namespace D2RModMaker.Difficulty
         public string[] RequiredFiles { get; } = new string[]
         {
             @"data:data/global/excel/Levels.txt",
+            @"data:data/global/excel/experience.txt",
             @"data:data/global/excel/monstats.txt"
         };
 

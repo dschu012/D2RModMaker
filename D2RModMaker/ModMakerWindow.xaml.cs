@@ -124,7 +124,8 @@ namespace D2RModMaker
             string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
             //debugging
-            foreach(var file in _productHandler.m_rootFiles)
+#if DEBUG
+            foreach (var file in _productHandler.m_rootFiles)
             {
                 if(file.FileName.Contains("hd/global/video"))
                 {
@@ -134,11 +135,8 @@ namespace D2RModMaker
                 {
                     Debug.WriteLine(file.FileName);
                 }
-                if(file.FileName.ToLower().Contains("/lng"))
-                {
-                    Debug.WriteLine(file.FileName);
-                }
             }
+#endif
 
             foreach (var file in files)
             {

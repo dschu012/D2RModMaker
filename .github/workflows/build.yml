@@ -1,0 +1,30 @@
+name: Build
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+    - name: Checkout
+      uses: actions/checkout@v2.4.0
+    - name: MSBuild
+      run: msbuild /t:D2RModMaker:Rebuild /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=None D2RModMaker.sln
+    - name: Zip release
+      uses: papeloto/action-zip@v1
+      with:
+        files: D2RModMaker\bin\Release\net5.0-windows
+        recursive: false
+        dest: D2RModMaker.zip
+    - name: Release
+      uses: marvinpinto/action-automatic-releases@v1.2.1
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: D2RModMaker.zip
