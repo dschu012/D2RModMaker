@@ -30,7 +30,7 @@ namespace D2RModMaker.Api
 
         public static void Init(ExecuteContext Context)
         {
-            string[] txt = File.ReadAllLines(Context.ModFiles[STRING_ID_FILE]);
+            string[] txt = File.ReadAllLines(Context.ModFiles[Constants.Files.NEXT_STRING_ID]);
             //NextStringID = int.Parse(txt[4]) + 1;
         }
 
