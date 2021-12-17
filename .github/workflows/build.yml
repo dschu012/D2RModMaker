@@ -35,4 +35,4 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: true
         title: "Development Build"
-        files: D2RModMaker.zip
+        files: D2RModMaker-${{ steps.date.outputs.date }}.zip
