@@ -25,10 +25,6 @@ jobs:
         filename: D2RModMaker.zip
         exclusions: |
           ref/*
-      with:
-        files: D2RModMaker\bin\Release\net5.0-windows
-        recursive: false
-        dest: D2RModMaker.zip
     - name: Release
       uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
