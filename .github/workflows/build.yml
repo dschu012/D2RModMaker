@@ -18,13 +18,13 @@ jobs:
       run: |
         nuget restore D2RModMaker.sln
         msbuild /t:D2RModMaker:Rebuild /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=None D2RModMaker.sln
+        Remove-Item -R -Fo D2RModMaker\bin\Release\net5.0-windows\ref
     - name: Zip release
-      uses: thedoctor0/zip-release@0.6.0
+      uses: papeloto/action-zip@v1
       with:
-        directory: D2RModMaker\bin\Release\net5.0-windows
-        filename: D2RModMaker.zip
-        exclusions: |
-          ref/*
+        files: D2RModMaker\bin\Release\net5.0-windows
+        recursive: true
+        dest: D2RModMaker.zip
     - name: Release
       uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
