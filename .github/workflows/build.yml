@@ -13,7 +13,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.4.0
     - name: MSBuild
-      run: msbuild /t:restore /t:D2RModMaker:Rebuild /p:RestorePackagesConfig=true /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=None D2RModMaker.sln
+      run: |
+        nuget restore D2RModMaker.sln
+        msbuild /t:D2RModMaker:Rebuild /p:Configuration=Release /p:DebugSymbols=false /p:DebugType=None D2RModMaker.sln
     - name: Zip release
       uses: papeloto/action-zip@v1
       with:
