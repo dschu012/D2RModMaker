@@ -8,6 +8,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Get date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
     - name: Checkout
@@ -24,7 +27,7 @@ jobs:
       with:
         files: D2RModMaker\bin\Release\net5.0-windows
         recursive: true
-        dest: D2RModMaker.zip
+        dest: D2RModMaker-${{ steps.date.outputs.date }}.zip
     - name: Release
       uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
