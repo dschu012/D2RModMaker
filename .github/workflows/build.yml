@@ -12,6 +12,8 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
     - name: Checkout
       uses: actions/checkout@v2.4.0
+      with:
+        submodules: recursive
     - name: MSBuild
       run: |
         nuget restore D2RModMaker.sln
