@@ -29,9 +29,11 @@ namespace D2RModMaker
 
         private string _installPath;
 
+        public double Seed { get; set; }
 
         public ModMakerWindow()
         {
+            Seed = new Random().Next(0, int.MaxValue);
             InitializeComponent();
 
             _installPath = (string)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Diablo II Resurrected", "InstallLocation", null);
@@ -165,6 +167,7 @@ namespace D2RModMaker
             {
                 if(plugin.Value.Enabled) {
                     modInfo.Plugins[plugin.Value.PluginName] = plugin.Value.Settings;
+                    context.Random = new Random((int)Seed);
                     plugin.Value.Execute(context);
                 }
             }

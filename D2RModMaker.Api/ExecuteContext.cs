@@ -18,5 +18,7 @@ namespace D2RModMaker.Api
         //files in the mod directory
         //mapping of data:data/global/excel/inventory.txt to wherever it is temporarily extracted in filesystem.
         public Dictionary<string, string> ModFiles;
+
+        public Random Random;
     }
 }

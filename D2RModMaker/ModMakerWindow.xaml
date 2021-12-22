@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:D2RModMaker"
         mc:Ignorable="d"
+        Name="ModMakerWindowPlugin"
         Title="Edit Mod" Height="600" Width="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="10">
@@ -33,6 +34,8 @@
                 <TextBox MinWidth="150" Margin="0,3,10,5" Name="ModNameTextBox">d2rmm</TextBox>
                 <Label>Additional Launch Args:</Label>
                 <TextBox MinWidth="250" Margin="0,3,10,5" Name="ModArgsTextBox">-enablerespec</TextBox>
+                <Label ToolTip="Used in any plugins w/ randomized values.">Seed:</Label>
+                <Slider Style="{StaticResource Spinner}" TickFrequency="1" Minimum="0" Maximum="2147483647" Value="{Binding Path=Seed, ElementName=ModMakerWindowPlugin, Mode=TwoWay}" />
             </WrapPanel>
             <StackPanel Grid.Row="1" Name="PluginPanel" Orientation="Vertical"></StackPanel>
             <Border Grid.Row="2" Padding="10">
